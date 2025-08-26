@@ -17,4 +17,4 @@ This fairly small package exists mainly to facilitate the drawing of _tetraplots
 * the `grid` graphics package (included in most installations of _R_) is used throughout, and this results in substantial flexibility
 * all ternary-plot triangles are drawn in such a way (i.e., at such an angle) that their width and height are equal.  The resulting square footprint of ternary plots made via _tplots_ is very helpful for the construction of tetraplots (and likely also for some other purposes, such as matrices of ternary plots).
 
-A bit more on the motivation can be found in the file `poster.pdf`, which is a poster presentation made at the Royal Statistical Society conference in Edinburgh, September 2025.
+A bit more on the motivation can be found in the file [`poster.pdf`](https://github.com/DavidFirth/tplots/blob/main/poster.pdf), which is a poster presentation made at the Royal Statistical Society conference in Edinburgh, September 2025.
