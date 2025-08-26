@@ -17,4 +17,13 @@ This fairly small package exists mainly to facilitate the drawing of _tetraplots
 * the `grid` graphics package (included in most installations of _R_) is used throughout, and this results in substantial flexibility
 * all ternary-plot triangles are drawn in such a way (i.e., at such an angle) that their width and height are equal.  The resulting square footprint of ternary plots made via _tplots_ is very helpful for the construction of tetraplots (and likely also for some other purposes, such as matrices of ternary plots).
 
-A bit more on the motivation can be found in the file [`poster.pdf`](https://github.com/DavidFirth/tplots/blob/main/poster.pdf), which is a poster presentation made at the Royal Statistical Society conference in Edinburgh, September 2025.  The data used in that poster are vote counts at the UK General Election of July 2024; the dataset is included in the _tplots_ package, and example code for drawing ternary plots and tetraplots can be found in _R_ via `?UK_GE_2024` and `?tetraplot`.
+A bit more on the motivation can be found in the file [`poster.pdf`](https://github.com/DavidFirth/tplots/blob/main/poster.pdf), which is a poster presentation for the Royal Statistical Society conference in Edinburgh, September 2025.  The data used in that poster are vote counts at the UK General Election of July 2024; the dataset is included in the _tplots_ package, and example code for drawing the ternary plots and tetraplots can be found in _R_ via `?UK_GE_2024` and `?tetraplot`.
+
+## License
+
+MIT license.  Please see the file `LICENSE.md` for details.
+
+## Please cite
+
+If you use this package in your own project, please cite appropriately.  For example,
+* Firth, D (2025).  Package _tplots_.  At [https://github.com/DavidFirth/tplots](https://github.com/DavidFirth/tplots).
