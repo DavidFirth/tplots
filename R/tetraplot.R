@@ -55,7 +55,7 @@
 #' ## Draw the tetraplot
 #' the_plot <- tetraplot(England_four_party_shares,
 #'                       perm = c(2, 4, 1, 3),
-#'                       labels_gp = grid::gpar(fontsize = 20),
+#'                       labels_gp = grid::gpar(fontsize = 14),
 #'                       thirds = party_backgrounds,
 #'                       thirds_gp = grid::gpar(col = "transparent"),
 #'                       points_gp = grid::gpar(fill = point_colours),

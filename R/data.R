@@ -68,8 +68,7 @@
 #' 
 #' #  Now make the ternary plot
 #' tplot_new(scale = 1.1)
-#' grid::grid.draw(ternary_thirds(fill = backgrounds))
-#' grid::grid.draw(ternary_frame())
+#' grid::grid.draw(ternary_thirds(fill = backgrounds, gp = grid::gpar(col = "transparent")))
 #' point_colours <- party_colours[England $ First.party]
 #' #  Plot the 3 traditional parties first so that other seat winners don't get buried
 #' plot_first <- England $ First.party %in% c("Con", "Lab", "LD")
