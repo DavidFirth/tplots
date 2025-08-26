@@ -1,0 +1,75 @@
+
+#' Divide the Background of a Ternary Plot into Thirds
+#'
+#' @description The [grid::grid.polygon()] constructor is used to create a background, which can be coloured, for a ternary plot.  The background divides the ternary plot into thirds.
+#'
+#' @param type either `"vertices"` (the default) or `"edges"`.
+#' @param fill either `NULL` or a vector of 3 colours
+#' @param gp  a list of other graphical parameters, made by the [grid::gpar()] function.
+#' 
+#' @details
+#'
+#' A grob is constructed, to divide the equilateral triangle of a ternary plot into thirds.  Such a grob should normally be drawn _before_ other objects such as those that result from [tplots::ternary_frame()] or [tplots::ternary_points()], to serve as the background for the plot.
+#'
+#' If the `type` is `"vertices"`, the thirds will be quadrilaterals into the three corners of the ternary plot.  If the `type` is `"edges"`, each third will be a triangle containing one edge and the centroid.  See examples below.
+#'
+#' The current viewport should be square when the grob gets drawn.  This is not checked. 
+#' 
+#' @return A gList containing three polygon grobs.
+#'
+#' @examples
+#'
+#' ## Coloured quadrilaterals into the 3 vertices
+#' tv <- ternary_thirds(type = "vertices",
+#'                      fill = c("#ffcccc", "#ccffcc", "#ccccff"))
+#' tplot_new(); grid::grid.draw(tv)
+#'
+#' ## Coloured triangles along the 3 edges, here with zero-width frame lines
+#' te <- ternary_thirds(type = "edges",
+#'                      fill = c("cyan3", "magenta3", "yellow3"),
+#'                      gp = grid::gpar(col = "white"))
+#' tplot_new(); grid::grid.draw(te)
+#'
+#' @author David Firth
+#'
+#' @export
+#' 
+ternary_thirds <- function(type = "vertices", fill = NULL, gp = grid::gpar(), vp = NULL) {
+    if (!(type %in% c("vertices", "edges"))) {
+        stop('type must be either "vertices" or "edges"')
+    }
+    if ((!is.null(fill)) && (length(fill) != 3)) {
+        stop("fill must be either NULL or a vector of 3 colours")
+    }
+    if (!inherits(gp, "gpar")) stop("gp must be a gpar object")
+    cycles <- matrix(c(3, 1, 2,
+                       1, 2, 3,
+                       2, 3, 1),
+                     3, 3, byrow = TRUE)
+    ident <- diag(3)
+    thirds <- grid::gList()
+    for (i in 1:3){
+        centroid <- c(1/3, 1/3, 1/3)
+        if (type == "vertices") {
+            midpoint1 <- (ident[i, ] + ident[cycles[i, 1], ])/2
+            vertex_i  <-  ident[i, ]
+            midpoint2 <- (ident[i, ] + ident[cycles[i, 3], ])/2
+            polygon_vertices <- matrix(c(centroid, midpoint1, vertex_i, midpoint2),
+                                       4, 3, byrow = TRUE)
+        }
+        if (type == "edges") {
+            vertex1 <- ident[cycles[i, 1], ]
+            vertex2 <- ident[cycles[i, 3], ]
+            polygon_vertices <- matrix(c(centroid, vertex1, vertex2),
+                                       3, 3, byrow = TRUE)
+        }
+        xy <- ternary_xy(polygon_vertices, neg_action = NULL)
+        if (is.null(fill)) fill <- rep(NULL, 3)
+        gp $ fill <- fill[i]
+        thirds[[i]] <- grid::polygonGrob(x = xy$x,
+                                         y = xy$y,
+                                         gp = gp,
+                                         vp = vp)
+    }
+    return(thirds)
+}

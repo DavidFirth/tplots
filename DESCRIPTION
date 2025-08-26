@@ -1,0 +1,21 @@
+Package: tplots
+Title: Ternary Plots and Tetraplots for Compositional Data
+Version: 0.0.1
+Authors@R: 
+  person("David", "Firth", , "d.firth@warwick.ac.uk", role = c("aut", "cre"),
+         comment = c(ORCID = "0000-0003-0302-2312"))
+Description: A ternary plot is a standard display for 3-part compositional
+  data.  A 'tetraplot' combines four ternary plots, in order to display a
+  4-part composition.  In a tetraplot, each included ternary plot relates
+  to one 3-part subcomposition.  Facilities of the 'grid' package are used
+  here in order to produce ternary plots and tetraplots, inside square
+  viewports.  The dataset that motivated this work, comprising vote counts
+  at the 2024 UK General Election, is included in the package and is used
+  as an example application of the plotting functions.
+Depends: R (>= 3.5.0)
+License: MIT + file LICENSE
+Imports: grid	
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

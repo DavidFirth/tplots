@@ -1,0 +1,34 @@
+#' Make a Triangular Frame for a Ternary Plot
+#'
+#' @description When drawn in a square viewport with x and y coordinates in the same units, the result is an equilateral triangle with one of its vertices at (0, 0).
+#'
+#' @param gp graphical settings via [grid::gpar()]
+#' @param ... arguments to pass to [grid::grid.polygon()]
+#' 
+#' @return A polygon grob object (invisibly).
+#'
+#' @details The viewport should be square when the grob gets drawn.  This is not checked.  To suppress drawing of the grob immediately after making it, supply the argument `draw = FALSE`.
+#'
+#' @author David Firth
+#'
+#' @examples
+#' library(grid)
+#' tplot_new(corner = c(1, 1))
+#' ternary_frame()
+#' #  Now draw another one, scaled down relative to its viewport
+#' pushViewport(ternary_viewport(corner = c(1, 1), scale = 1.2))
+#' ternary_frame(gp = gpar(lty = "dashed"))
+#' 
+#' @export
+#' 
+ternary_frame <- function(gp = grid::gpar(fill = "transparent"), ...) {
+    xy <- ternary_xy(diag(3),
+                     neg_action = NULL)
+    grid::grid.polygon(x = xy[, "x"],
+                       y = xy[, "y"],
+                       default.units = "native",
+                       gp = gp,
+                       ...)
+}
+
+

@@ -1,0 +1,27 @@
+#' Start a New Ternary Plot or Tetraplot
+#'
+#' This function erases the current device or moves to a new page, and then sets up a square viewport suitable for drawing a ternary plot or a tetraplot.  See [tplots::ternary_viewport()] for details such as how to set the orientation and/or scale. 
+#'
+#' @param ... arguments to be passed to [tplots::ternary_viewport()].
+#'
+#' @return A viewport object (invisibly).
+#'
+#' @details This is just a convenient wrapper for a common sequence: a call to [grid::grid.newpage()] and then [tplots::ternary_viewport()] and then [grid::pushViewport()].
+#'
+#' @examples
+#' ## Draw a ternary frame, oriented towards top left and smaller than the viewport
+#' tplot_new(corner = c(0, 1), scale = 1.2)
+#' grid::grid.rect(gp = grid::gpar(col = "green"))
+#' # The viewport boundary was drawn in green.
+#' grid::grid.draw(ternary_frame())
+#'
+#' @author David Firth
+#'
+#' @export
+#' 
+tplot_new <- function(...) {
+    grid::grid.newpage()
+    vp <- ternary_viewport(...)
+    grid::pushViewport(vp)
+    invisible(vp)
+}

@@ -1,0 +1,56 @@
+#' Convert Three-Part Composition Vectors to Coordinates for Plotting
+#'
+#' @description
+#' Converts a 3-column matrix of compositional data to a 2-component list of x and y coordinates for ternary plotting in the native units of the (square) viewport. 
+#' @param nby3 a three-column numeric matrix.  Each row represents one point to be plotted.  Rows will be scaled to sum to 1 before plotting, so no row can contain only zeros.
+#' @param neg_action a character string, either `"warning"` or `"error"`; or `NULL` if no checking of negative values is wanted.  This provides optional checking for negative values in the `compos` matrix.
+#'
+#' @return A two-component list of `"unit"` objects, with component names `"x"` and `"y"`.
+#'
+#' @details This is an internal helper function, to enable the making/drawing of ternary plot objects in square viewports.  It is called by functions such as [tplots::ternary_frame()] and [tplots::ternary()].  This function is invariant to scaling of rows in the data, and optionally tolerates negative values in the data.
+#'
+#' @examples
+#' corners_and_centre <- rbind(diag(3), rep(1/3, 3))
+#' ternary_xy(corners_and_centre)
+#' 
+#' @author David Firth
+#'
+#' @export
+#' 
+ternary_xy <- function(nby3, neg_action = "warning") {
+
+    ## Do some argument checking
+    if (ncol(nby3) != 3) stop("nby3 must be a matrix with 3 columns")
+    if (any(!is.numeric(nby3))) stop("nby3 must have all numeric elements")
+ 
+    ## Check for negative values
+    if (!is.null(neg_action)) {
+        if (!(neg_action %in% c("warning", "error"))) {
+            stop('neg_action must be NULL or "warning" or "error"')
+        }
+        if (any(nby3 < 0)) {
+            if (neg_action == "warning") {
+                warning("at least one composition has a negative value")
+            }
+            if (neg_action == "error") {
+                stop("at least one composition has a negative value")
+            }
+        }
+    }
+
+    ## Check for all-zero rows in the data
+    row_sums <- .rowSums(nby3, nrow(nby3), 3)
+    if (any (row_sums == 0)) stop("nby3 has at least one row of zeros")
+    
+    ## Scale input rows to sum to 1
+    nby3 <- nby3 / row_sums
+
+    ## Apply the required linear transformation
+    tan15 <- tan(pi / 12)
+    M <- matrix(c(
+        0, tan15,     1,
+        0,     1, tan15),
+        3, 2)
+    xy <- nby3 %*% M
+    list(x = grid::unit(xy[, 1], "native"), y = grid::unit(xy[, 2], "native"))
+}
