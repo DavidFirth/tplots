@@ -27,6 +27,12 @@ A bit more on the motivation can be found in the file [`poster.pdf`](https://git
 
 MIT license.  Please see the file `LICENSE.md` for details.
 
+## Acknowledgement
+
+An initial conversation I had with Paul Murrell, author of the _grid_ package, was very helpful when planning this package.  And Paul's book _R Graphics_ has been indespensable.
+
+I wrote this software while funded by an Leverhulme Emeritus Fellowship, and I am very grateful for that support.
+
 ## Please cite
 
 If you use this package in your own project, please cite appropriately.  For example,
