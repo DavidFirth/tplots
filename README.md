@@ -1,6 +1,10 @@
 # tplots
 R package for making ternary plots and tetraplots.
 
+### In development
+
+This package is still very much a work in progress.  Please file bug reports and feature requests in the "issues" section on GitHub.
+
 ## Installation
 With one or other of the CRAN packages `remotes` or `devtools` already installed: in an _R_ session, you can do either
 ```
