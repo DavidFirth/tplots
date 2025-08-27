@@ -1,4 +1,3 @@
-
 #' Divide the Background of a Ternary Plot into Thirds
 #'
 #' @description The [grid::grid.polygon()] constructor is used to create a background, which can be coloured, for a ternary plot.  The background divides the ternary plot into thirds.

@@ -22,7 +22,7 @@ A points grob object (invisibly).
 Three-part compositional data are converted to 2-dimensional coordinates and then displayed in a ternary plot.
 }
 \details{
-When the resulting object is drawn, the viewport should be square.  This is not checked.  To suppress drawing of the grob immediately after making it, supply the argument \code{draw = FALSE}.
+When the resulting object is drawn, the viewport should be square.  This is not checked.
 }
 \examples{
 ## Toy data with compositions (1/6, 2/6, 3/6) and (2/5, 2/5, 1/5)

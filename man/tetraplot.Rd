@@ -48,9 +48,11 @@ a grob of class \code{gTree}.
 The four faces of a tetrahedron are used in order to display 4-part compositions.
 }
 \details{
-??
+When the resulting object is drawn, the viewport should be square.  This is not checked.
 }
 \examples{
+
+## The tetraplot for England, as shown in the file "poster.pdf"
 
 data(UK_GE_2024)
 

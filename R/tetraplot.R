@@ -15,10 +15,12 @@
 #'
 #' @return a grob of class `gTree`.
 #'
-#' @details ??
+#' @details When the resulting object is drawn, the viewport should be square.  This is not checked.
 #'
 #' @examples
 #'
+#' ## The tetraplot for England, as shown in the file "poster.pdf"
+#' 
 #' data(UK_GE_2024)
 #'
 #' ## Focus on the top 4 parties in terms of vote shares in England
